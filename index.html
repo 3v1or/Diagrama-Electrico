@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagrama ZKTeco LF10 KIT</title>
+<style>
+    body { background-color: #121212; color: #e0e0e0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .canvas { position: relative; width: 850px; height: 600px; background: #1a1a1b; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border: 1px solid #333; }
+    .header { text-align: center; margin-bottom: 20px; font-weight: 600; font-size: 20px; color: #fff; letter-spacing: 1px; }
+    .node { position: absolute; background: #242526; border: 2px solid #555; border-radius: 10px; padding: 15px; width: 160px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 10; }
+    .title { font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #fff; text-align: center; border-bottom: 1px solid #444; padding-bottom: 5px; }
+    .subtitle { font-size: 10px; color: #888; text-align: center; margin-bottom: 8px; font-style: italic; }
+    .port { display: flex; justify-content: space-between; font-size: 12px; margin: 6px 0; font-family: monospace; }
+    
+    /* Posiciones de los dispositivos */
+    #fuente { top: 70px; left: 50px; border-color: #4CAF50; }
+    #chapa { top: 70px; right: 50px; border-color: #F44336; }
+    #regleta { top: 250px; left: 350px; width: 120px; border-color: #9E9E9E; text-align: center; }
+    #biometrico { top: 400px; left: 50px; border-color: #2196F3; }
+    #boton { top: 400px; right: 50px; border-color: #FF9800; }
+    
+    svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+    .line { fill: none; stroke-width: 3; stroke-dasharray: 6, 6; animation: dash 20s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -1000; } }
+    
+    /* Colores de cableado */
+    .rojo { stroke: #F44336; }
+    .negro { stroke: #757575; } /* Gris oscuro para contraste */
+    .azul { stroke: #2196F3; }
+    .amarillo { stroke: #FFEB3B; }
+    .blanco { stroke: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+    <div class="header">Análisis de Control de Acceso: LF10 KIT</div>
+
+    <div id="fuente" class="node">
+        <div class="title">⚡ Fuente 12V</div>
+        <div class="subtitle">(Fusible Interno)</div>
+        <div class="port"><span>V+</span><span style="color:#F44336">Rojo</span></div>
+        <div class="port"><span>V-</span><span style="color:#9E9E9E">Negro</span></div>
+    </div>
+
+    <div id="chapa" class="node">
+        <div class="title">🔒 Electroimán</div>
+        <div class="port"><span>V+</span><span style="color:#FFEB3B">Amarillo</span></div>
+        <div class="port"><span>V-</span><span style="color:#9E9E9E">Negro</span></div>
+    </div>
+
+    <div id="regleta" class="node">
+        <div class="title">Regleta (Empalmes)</div>
+        <div style="font-size: 11px; color: #aaa;">Distribución de Voltaje</div>
+    </div>
+
+    <div id="biometrico" class="node">
+        <div class="title">👆 Biométrico LF10</div>
+        <div class="port"><span>+12V</span><span style="color:#F44336">Rojo</span></div>
+        <div class="port"><span>GND</span><span style="color:#9E9E9E">Negro</span></div>
+        <div class="port"><span>BUT</span><span style="color:#2196F3">Azul</span></div>
+        <div class="port"><span>NC</span><span style="color:#FFEB3B">Amarillo</span></div>
+        <div class="port"><span>COM</span><span style="color:#FFFFFF">Blanco</span></div>
+    </div>
+
+    <div id="boton" class="node">
+        <div class="title">🚪 Botón Salida</div>
+        <div class="port"><span>+12V</span><span style="color:#F44336">Rojo</span></div>
+        <div class="port"><span>GND</span><span style="color:#9E9E9E">Negro</span></div>
+        <div class="port"><span>NO</span><span style="color:#FFEB3B">Amarillo</span></div>
+        <div class="port"><span>COM</span><span style="color:#FFFFFF">Verde/Bco</span></div>
+    </div>
+
+    <svg>
+        <line x1="145" y1="185" x2="380" y2="280" class="line rojo" />
+        <line x1="145" y1="205" x2="380" y2="300" class="line negro" />
+
+        <line x1="380" y1="280" x2="145" y2="465" class="line rojo" />
+        <line x1="380" y1="300" x2="145" y2="485" class="line negro" />
+        
+        <line x1="240" y1="550" x2="430" y2="330" class="line blanco" />
+
+        <line x1="480" y1="280" x2="700" y2="465" class="line rojo" />
+        <line x1="480" y1="300" x2="700" y2="485" class="line negro" />
+
+        <line x1="480" y1="310" x2="700" y2="185" class="line negro" />
+
+        <line x1="240" y1="505" x2="650" y2="505" class="line azul" />
+        
+        <line x1="240" y1="525" x2="430" y2="315" class="line amarillo" />
+        <line x1="480" y1="315" x2="650" y2="165" class="line amarillo" />
+    </svg>
+</div>
+
+</body>
+</html>
